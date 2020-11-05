@@ -1,15 +1,15 @@
-from Locators.login_page_locators import LoginPageLocators
-from Pages.base_page import BasePage
 import sys
+
+from Locators.login_page_locators import LoginPageLocators
+from Pages.home_page import HomePage
 
 sys.path.append(".")
 
 
-class LoginPage(BasePage):
+class LoginPage(HomePage):
 
   def __init__(self, driver):
     super().__init__(driver)
-    self.navigate_to("https://www.saucedemo.com/index.html")
 
   def login(self, account):
     self.enter_text(LoginPageLocators.INPUT_USERNAME, account.username)
