@@ -1,6 +1,6 @@
 import logging
 
-from Locators.cart_locators import CartLocators
+from Locators.cart_page_locators import CartLocators
 from Objects.product import Product
 from Pages.base_page import BasePage
 
@@ -9,9 +9,6 @@ class CartPage(BasePage):
   def __init__(self, driver):
     super().__init__(driver)
     logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
-
-  def click_check_out_product(self):
-    self.click(CartLocators.CHECK_OUT_BUTTON)
 
   def click_continue_shopping(self):
     self.click(CartLocators.CONTINUE_SHOPPING_BUTTON)

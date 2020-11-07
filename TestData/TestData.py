@@ -1,5 +1,6 @@
 import json
 
+from Objects.check_out_info import CheckoutInfo
 from Objects.product import Product
 
 
@@ -23,3 +24,12 @@ class TestData:
       json_file.close()
 
     return products
+
+  def get_check_out_info(self):
+    with open(TestData.FILE) as json_file:
+      data = json.load(json_file)
+      item = data['checkout']
+      check_out_info = CheckoutInfo(item['firstname'], item['lastname'], item['zipcode'])
+      json_file.close()
+
+    return check_out_info

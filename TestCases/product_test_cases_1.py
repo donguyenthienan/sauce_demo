@@ -9,14 +9,14 @@ from TestData.TestData import TestData
 from Utils.assertion import Assertion
 
 
-class ProductTestCases(BaseTest):
+class ProductTestCases1(BaseTest):
   def setUp(self):
     super().setUp()
 
   def tearDown(self):
     super().tearDown()
 
-  @unittest.skip('Thich')
+  # @unittest.skip('Thich')
   def test_product(self):
     expected_product = Product('Sauce Labs Bolt T-Shirt',
                                'Get your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt.',
@@ -25,13 +25,11 @@ class ProductTestCases(BaseTest):
     account = Account(TestData.STANDARD_USER, TestData.PASSWORD)
     login_page.login(account)
     product_page = ProductsPage(self.driver)
-    product_info = product_page.get_product_info(1)
     product_page.add_product_to_cart(1)
     self.assertTrue(product_page.is_remove_button_exist(1))
     self.assertEqual(product_page.get_cart_number(), 1)
     product_page.remove_product_from_cart(1)
-    self.assertTrue(product_page.is_add_button_exist(1))
-    # self.assertEqual(product_page.get_cart_number(), 0)
+    self.assertTrue(product_page.does_add_button_exist(1))
     self.assertEqual(product_page.get_product_info(1).__init__(), expected_product.__init__())
 
   def test_products_display_correctly(self):

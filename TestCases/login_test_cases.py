@@ -1,5 +1,6 @@
 import unittest
 
+from Locators.login_page_locators import LoginPageLocators
 from Objects.account import Account
 from Pages.login_page import LoginPage
 from Pages.products_page import ProductsPage
@@ -25,7 +26,7 @@ class LoginTestCases(BaseTest):
     self.login_page = LoginPage(self.driver)
     account = Account(TestData.LOCKED_OUT_USER, TestData.PASSWORD)
     self.login_page.login(account)
-    message = self.driver.find_element_by_xpath().text
+    message = self.driver.find_element_by_xpath(LoginPageLocators.ERROR_MESSAGE).text
     print(message)
     self.assertIn(self.driver.current_url, 'https://www.saucedemo.com/index.html', 'Làm lại đi')
     self.assertIn('Epic sadface: Sorry, this user has been locked out.', message, 'Làm lại đi')
@@ -38,7 +39,7 @@ class LoginTestCases(BaseTest):
     products_page = ProductsPage(self.driver)
     num = products_page.get_broken_image()
     print(num)
-    # self.assertEqual(0, num, 'Bug--------------------------------'
+    self.assertEqual(0, num, 'Bug--------------------------------')
     print(products_page.get_product_info(1))
     print(products_page.get_product_info(2))
     print(products_page.get_product_info(3))

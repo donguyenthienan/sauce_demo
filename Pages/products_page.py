@@ -45,7 +45,6 @@ class ProductsPage(BasePage):
 
   def get_product_badge(self):
     total = 0
-
     try:
       total = self.get_text(ProductsLocators.LABEL_SHOPPING_CART_BADGE)
     except:
