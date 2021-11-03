@@ -1,18 +1,8 @@
-# import unittest
-import pytest
-from Locators.login_page_locators import LoginPageLocators
 from Objects.account import Account
 from Pages.login_page import LoginPage
-from Pages.products_page import ProductsPage
 from TestData.TestData import TestData
 
 
-
-  # def setUp(self):
-  #   super().setUp()
-  #
-  # def tearDown(self):
-  #   super().tearDown()
 
 def test_login_with_standard_user(driver):
   timeout = 5

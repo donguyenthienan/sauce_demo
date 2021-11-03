@@ -5,7 +5,7 @@ from Objects.product import Product
 
 
 class TestData:
-  LOGIN_URL = "https://www.saucedemo.com/index.html"
+  LOGIN_URL = "https://www.saucedemo.com/"
   STANDARD_USER = "standard_user"
   LOCKED_OUT_USER = "locked_out_user"
   PROBLEM_USER = "problem_user"
