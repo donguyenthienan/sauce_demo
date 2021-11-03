@@ -1,5 +1,9 @@
 wheel
 selenium
+selenium-page-factory
+webdriver-manager
 pytest
 pytest-xdist
+pytest_html
 requests
+xlrd

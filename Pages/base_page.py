@@ -2,14 +2,20 @@ import logging
 
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from seleniumpagefactory import PageFactory
+
+from Drivers.Browser import BROWSER
+from Utils.DriverUtils import DriverUtils
 
 
-class BasePage(object):
-
-  def __init__(self, driver):
-    self.driver = driver
+class BasePage(PageFactory):
+  def __init__(self):
+    # self.driver = BaseTest.browser.INSTANCE
+    self.driver = DriverUtils.driver.INSTANCE
     self.timeout = 30
     self.driver.implicitly_wait(60)
+
+
 
   def navigate_to(self, url):
     self.driver.get(url)
@@ -26,6 +32,11 @@ class BasePage(object):
   def get_text(self, by_locator):
     element = WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(by_locator))
     return element.text
+
+  # def get_web_element(self, *loc):
+  #   element = WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(*loc))
+  #   self.highlight_web_element(element)
+  #   return element
 
   def get_elements_size(self, by_locator):
     WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_all_elements_located(by_locator))
