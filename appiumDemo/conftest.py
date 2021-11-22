@@ -1,11 +1,12 @@
 import pytest
 from appium import webdriver
+from appium.webdriver.appium_service import AppiumService
 
 from Utils.DriverUtils import DriverUtils
 
 
-@pytest.fixture
-def driver():
+@pytest.fixture(autouse=True, scope="session")
+def appiumDriver(setDown):
     if (DriverUtils.appiumDriver != None):
         return DriverUtils.appiumDriver
     desired_caps = dict(
@@ -21,9 +22,14 @@ def driver():
     driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
     driver.implicitly_wait(5)
     DriverUtils.appiumDriver = driver
+    DriverUtils.width = DriverUtils.appiumDriver.get_window_size().get('width')
+    DriverUtils.height = DriverUtils.appiumDriver.get_window_size().get('height')
     return DriverUtils.appiumDriver
 
-@pytest.fixture(autouse=True, scope="session")
+@pytest.fixture(scope="session")
 def setDown():
+    appium_service = AppiumService()
+    appium_service.start(hihi="")
     yield
     DriverUtils.appiumDriver.quit()
+    appium_service.stop()
