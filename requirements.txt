@@ -8,3 +8,4 @@ pytest_html
 requests
 xlrd
 appium-python-client
+allure-pytest

@@ -1,22 +1,33 @@
+import allure
+from _pytest.logging import caplog
+
 from Utils.swipeUtils import SwipeUtils
 from appiumDemo.Pages.base_page import BasePage
 
 
-def test_appium1(appiumDriver):
-    el = appiumDriver.find_element_by_accessibility_id('Login')
-    el.click()
+@allure.step
+def passing_step():
+    pass
 
 
-def test_appium2(appiumDriver):
-    el = appiumDriver.find_element_by_accessibility_id('Forms')
-    el.click()
+@allure.severity(allure.severity_level.NORMAL)
+def test_appium1():
+    passing_step()
+    caplog
+    BasePage().click_menu("Login")
 
 
+@allure.severity(allure.severity_level.MINOR)
+def test_appium2():
+    BasePage().click_menu("Forms")
 
+
+@allure.severity(allure.severity_level.MINOR)
 def test_appium3():
     BasePage().click_menu("Forms")
 
 
+@allure.severity(allure.severity_level.MINOR)
 def test_swipe():
     SwipeUtils().swipeToOpenNotification()
     SwipeUtils().swipeToCloseNotification()
